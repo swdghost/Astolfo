@@ -1,0 +1,6 @@
+g4f
+elevenlabs
+pyqt5
+sockets 
+psutil
+speechrecognition
