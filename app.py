@@ -55,13 +55,14 @@ class AstolfoFrontend(QWidget):
         self.GUI.animation_speaking = QtGui.QMovie("UI\\gif2.gif")
         self.GUI.AISpeaking.setMovie(self.GUI.animation_speaking)
         self.runGIF()
-        self.resetGIF()
 
     def runGIF(self):
+        self.GUI.animation_speaking = QtGui.QMovie("UI\\gif2.gif")
+        self.GUI.AISpeaking.setMovie(self.GUI.animation_speaking)
         self.GUI.animation_speaking.start()
 
     def resetGIF(self):
-        self.GUI.animation_speaking.stop()
+        pass
 
     def on_send_button_pressed(self) -> None:
         thread = threading.Thread(target=backend.send_button_backend, args=())

@@ -1,11 +1,12 @@
 ## DEPENDENCIES
 import speech_recognition as sr
 from elevenlabs import generate , set_api_key, stream
-
+import re
 # EXTENSIONS
 from AstolfoExtensions.Alphex import get_response
 from AstolfoExtensions.DateTime import date, time
 from AstolfoExtensions.IpAddress import get_ip_address
+from AstolfoExtensions.YoutubeSearch import open_youtube
 from AstolfoExtensions.stats import get_system_stats
 from config import *
 
@@ -36,7 +37,7 @@ def voice_output(response) -> None:
     set_api_key(elevenlabs_api_key)
     audio = generate(
             text= response,
-            voice="Charlie",
+            voice="Fin",
             model="eleven_multilingual_v2",
             stream=True)
     
@@ -55,7 +56,7 @@ def chat(query):
         query = query.lower()
         query = remove_punctuations(query)
         if query == "what is your name" or query == "who are you" or query == "your name":
-            results = "My name is Astolfo . You can also call me Amaze assistant."
+            results = "My name is Astolfo ."
             return results
 
         elif query == 'who created you' or query == 'who built you' or  query == 'who invented you' or query == 'who discovered you' :
@@ -63,7 +64,7 @@ def chat(query):
             return results 
 
         elif "introduce yourself" in query:
-            results = "I am Astolfo. A Multi-model Artiicial Intelligence Program built to help you learn about a variety of things since the best I can. 24 hours a day, 7 days a week."
+            results = "I am Astolfo. A Multi-model Artificial Intelligence Program built to help you learn about a variety of things since the best I can. 24 hours a day, 7 days a week."
             return results
         elif "ip address" in query:
             results = f"Current System IP address is: {get_ip_address()}"
@@ -80,8 +81,10 @@ def chat(query):
         elif "time" in query :
             results = f"The Current time is : {time()}"
             return results
+        
         else : 
             results = get_response(query)
-            return results
+            results_ = re.sub(r'http\S+', '', results, flags=re.MULTILINE)
+            return results_
         
         

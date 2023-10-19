@@ -23,7 +23,9 @@ from g4f.Provider import (
 
 def get_response(query):
     response = g4f.ChatCompletion.create(
-        model=g4f.models.default,
-        messages=[{"role": "user", "content": f"Refer to Youself as an imaginary character named Astolfo.  Answer this in short - Question : {query}"}],
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": f" Answer this in short - Question : {query}"}],
     )
     return response
+
+print(get_response("Hello, /Explain quantum mechanics"))
