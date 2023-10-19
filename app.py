@@ -18,10 +18,10 @@ class AstolfoBackend(QThread):
         ui.GUI.OutputWindow.append(f"User : {query}")
         ui.GUI.ProgressLabel.setText("THINKING ..")
         response = chat(query)
-        ui.GUI.OutputWindow.append(f"ASTOLFO : {response}")
-        ui.runGIF()
+        ui.GUI.OutputWindow.append(f"ASTOLFO : {response} \n \n ")
+        #ui.runGIF()
         voice_output(response)
-        ui.resetGIF()
+        #ui.resetGIF()
         ui.GUI.ProgressLabel.setText(" WAITING FOR INPUT ...")
         self.finished.emit()
 
@@ -36,8 +36,7 @@ class AstolfoBackend(QThread):
         else :
             ui.GUI.ProgressLabel.setText("THINKING ... ")
             response = chat(query)
-            ui.runGIF()
-            ui.GUI.OutputWindow.append(f"ASTOLFO : {response}")
+            ui.GUI.OutputWindow.append(f"ASTOLFO : {response} \n \n")
             voice_output(response)
             ui.GUI.ProgressLabel.setText("WAITING FOR INPUT ... ")
             self.finished.emit()
