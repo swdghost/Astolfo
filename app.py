@@ -14,6 +14,12 @@ class AstolfoBackend(QThread):
 
     def send_button_backend(self):
         query = ui.GUI.textEdit.text()
+        query = query.lower()
+        if(query == "stop"):
+            ui.GUI.textEdit.clear()
+            self.finished.emit()
+            self.terminate()
+            
         ui.GUI.textEdit.clear()
         ui.GUI.OutputWindow.append(f"User : {query}")
         ui.GUI.ProgressLabel.setText("THINKING ..")
